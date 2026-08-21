@@ -1,58 +1,152 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🛒 TechZone CR — Tienda Virtual de Productos Tecnológicos
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Proyecto Final — Tecnologías y Sistemas Web II (ITI-523)**  
+**Universidad Técnica Nacional**  
+**Profesora: Ing. Milena Vargas Blanco**
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 👥 Integrantes del Equipo
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+| Nombre | Rol |
+|---|---|
+| **Dylan Sanabria** | Seguridad, Autenticación, Perfil de Usuario y Base de Datos |
+| **Dylan Cerda** | Catálogo, Búsqueda, Filtros, Cookies y Maquetación Frontend |
+| **Cristian Rojas** | Carrito, Pasarela de Pago, Facturación, Tracking, Reportes PDF y Pruebas Unitarias |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 📋 Descripción
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**TechZone CR** es una tienda virtual completa para la venta de productos tecnológicos (laptops, smartphones, audio y accesorios) en Costa Rica. Incluye autenticación segura, catálogo con filtros dinámicos, carrito de compras con cálculo automático del **13% de IVA** y costo de envío, pasarela de pago simulada (Tarjeta / PayPal / SINPE), generación de facturas con **número de seguimiento único** (`TRK-XXXXXXXX`), historial de pedidos, cookies de productos vistos recientemente y reportes de ventas exportables a PDF.
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 🛠️ Stack Tecnológico
 
-## Agentic Development
+| Componente | Tecnología |
+|---|---|
+| **Backend** | PHP 8.2+ con Laravel 12 |
+| **Base de Datos** | SQLite |
+| **Frontend** | HTML5, CSS3, Bootstrap 5.3.2, Bootstrap Icons, JavaScript |
+| **Reportes PDF** | Barryvdh/DomPDF |
+| **Pruebas** | PHPUnit (9 tests, 24 aserciones) |
+| **Servidor Local** | Apache (XAMPP) o `php artisan serve` |
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+---
+
+## ⚙️ Instalación y Ejecución Local
+
+### Requisitos previos
+- PHP 8.2 o superior (con extensión `pdo_sqlite` habilitada)
+- Composer 2.0+
+- XAMPP / WAMP o la CLI de Laravel
+
+### Pasos
 
 ```bash
-composer require laravel/boost --dev
+# 1. Clonar o extraer el proyecto
+cd c:\xampp\htdocs\   # o el directorio preferido
 
-php artisan boost:install
+# 2. Instalar dependencias de PHP
+composer install
+
+# 3. Copiar el archivo de configuración (si no existe .env)
+cp .env.example .env
+
+# 4. Generar la clave de la aplicación
+php artisan key:generate
+
+# 5. Ejecutar migraciones y sembrar datos iniciales
+php artisan migrate:fresh --seed
+
+# 6. Iniciar el servidor de desarrollo
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Abrir en el navegador: **http://127.0.0.1:8000**
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🔑 Cuentas de Demostración
 
-## Code of Conduct
+| Tipo | Correo | Contraseña |
+|---|---|---|
+| **Administrador** (Reportes PDF) | `admin@techzone.cr` | `admin123` |
+| **Cliente** (Compras de prueba) | `estudiante@tienda.com` | `12345678` |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 🧩 Funcionalidades Principales
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- ✅ Registro e inicio de sesión con contraseñas cifradas (Bcrypt) y protección CSRF
+- ✅ Regeneración de sesión al login y destrucción al logout (prevención de Session Fixation)
+- ✅ Catálogo con búsqueda por palabra clave, filtros por categoría, rango de precios y ordenamiento
+- ✅ Sistema de cookies HTTP (`recently_viewed`) para productos vistos recientemente
+- ✅ Carrito de compras con validación de stock en tiempo real
+- ✅ Cálculo automático de Subtotal, 13% IVA y Envío (gratis en compras ≥ ₡50.000)
+- ✅ Pasarela de pago simulada: Tarjeta de Crédito/Débito, PayPal y SINPE Móvil
+- ✅ Generación de factura con número de seguimiento único (`TRK-XXXXXXXX`)
+- ✅ Descuento automático de stock al completar la compra
+- ✅ Perfil de usuario con historial de pedidos y cambio de contraseña
+- ✅ Reportes PDF de ventas por mes y por cliente (solo Administrador)
+- ✅ 9 pruebas automatizadas con PHPUnit
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🧪 Pruebas Unitarias
+
+```bash
+php artisan test
+```
+
+Resultado esperado: **OK (9 tests, 24 assertions)**
+
+---
+
+## 📁 Estructura de Archivos Clave
+
+```
+app/Http/Controllers/
+├── AuthController.php        ← Registro, Login, Logout, Perfil
+├── ProductController.php     ← Catálogo, Filtros, Cookies
+├── CartController.php        ← Carrito, Cálculo IVA y Envío
+├── CheckoutController.php    ← Pasarela de Pago, Tracking
+└── ReportController.php      ← Reportes PDF (Admin)
+
+app/Models/
+├── User.php
+├── Product.php
+├── Category.php
+├── Order.php
+└── OrderItem.php
+
+resources/views/
+├── home.blade.php
+├── layouts/app.blade.php
+├── auth/ (login, register)
+├── products/ (index, show)
+├── cart/ (index)
+├── checkout/ (index, success)
+├── profile/ (index)
+└── reports/ (index, pdf_monthly, pdf_client)
+
+tests/Feature/
+└── StoreTest.php             ← 9 pruebas automatizadas
+
+database/migrations/          ← 7 migraciones (users, categories, products, orders, order_items...)
+```
+
+---
+
+## 📄 Documentación Adicional
+
+Consultar el archivo [DOCUMENTACION.md](DOCUMENTACION.md) para información técnica detallada incluyendo:
+- Diagrama de caso de uso (Mermaid)
+- Estructura completa de la base de datos
+- Instrucciones de hosting y certificado SSL
+- Guía de publicación en GitHub
+
+---
+
+> **Proyecto desarrollado por Dylan Sanabria, Dylan Cerda y Cristian Rojas — 2026**
